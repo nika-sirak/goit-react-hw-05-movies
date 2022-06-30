@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import MoviesList from 'components/MoviesList/MoviesList';
 import Loader from 'components/Loader/Loader';
-import { fetchTrendMovies } from '../services/moviesAPI';
-
-const BASE_URL = 'https://image.tmdb.org/t/p/w200/';
+import { fetchTrendMovies } from '../../services/moviesAPI';
+import s from './HomePage.module.css';
 
 function HomePage() {
   const [movies, setMovies] = useState([]);
@@ -25,28 +24,13 @@ function HomePage() {
     fetchMovies();
   }, []);
 
-  console.log(movies);
-
   return (
-    <>
-      <h1>Trending today</h1>
+    <section className={s.homePage}>
+      <h1 className={s.homePageTitle}>Trending today</h1>
       {loading && <Loader />}
       {error && <p>{error.message}</p>}
-      <ul>
-        {!error &&
-          movies.map(movie => (
-            <li key={movie.id}>
-              <Link to={`/movies/${movie.id}`}>
-                <img
-                  src={`${BASE_URL}${movie.poster_path}`}
-                  alt={movie.title}
-                />
-                <p>{movie.original_title ?? movie.original_name}</p>
-              </Link>
-            </li>
-          ))}
-      </ul>
-    </>
+      {!error && <MoviesList moviesArr={movies} />}
+    </section>
   );
 }
 

@@ -1,0 +1,19 @@
+.movieCardContainer {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  display: flex;
+  gap: 25px;
+  padding-bottom: 10px;
+}
+
+.movieCardDesc {
+  flex-basis: 500px;
+}
+.movieGenres {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+.movieCardTitle {
+  color: #0d253f;
+}

@@ -28,3 +28,10 @@ export const fetchMovieRevies = async movieId => {
   );
   return response.data;
 };
+
+export const fetchSearchMovieByQuery = async queryName => {
+  const response = await axios.get(
+    `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&language=en-US&query=${queryName}&page=1&include_adult=false`
+  );
+  return response.data;
+};

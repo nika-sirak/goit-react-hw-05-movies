@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieRevies } from '../../services/moviesAPI';
 import Loader from 'components/Loader/Loader';
+import s from './Reviews.module.css';
 
 function Reviews() {
   const { movieId } = useParams();
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -15,7 +16,9 @@ function Reviews() {
 
       try {
         const { results } = await fetchMovieRevies(movieId);
-        setReviews(results);
+        if (results.length) {
+          setReviews(results);
+        }
       } catch (error) {
         setError(error);
       } finally {
@@ -25,17 +28,20 @@ function Reviews() {
     fetchReviews();
   }, [movieId]);
 
-  console.log(reviews);
   return (
     <>
       {loading && <Loader />}
-      {reviews === [] && <p>We don't have any reviews for this movie</p>}
-      {reviews !== [] && (
-        <ul>
-          {reviews.map(review => (
-            <li key={review.id}>
-              <p>Author: {review.author}</p>
-              <p>{review.content}</p>
+      {!reviews && (
+        <p className={s.reviewError}>
+          We don't have any reviews for this movie.
+        </p>
+      )}
+      {reviews && (
+        <ul className={s.reviewsList}>
+          {reviews.map(({ id, author, content }) => (
+            <li key={id} className={s.reviewsItem}>
+              <p className={s.author}>Author: {author}</p>
+              <p className={s.review}>{content}</p>
             </li>
           ))}
         </ul>

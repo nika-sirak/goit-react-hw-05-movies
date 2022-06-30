@@ -8,23 +8,28 @@ function MovieCard({ movie }) {
     movie;
 
   return (
-    <div>
-      <img src={`${BASE_URL}${poster_path}`} alt="" />
-      <h2>
-        {title}({release_date.slice(0, 4)})
-      </h2>
+    <div className={s.movieCardContainer}>
+      <img
+        className={s.movieCardImg}
+        src={`${BASE_URL}${poster_path}`}
+        alt={title}
+        width="300"
+      />
 
-      <p>User score: {vote_average * 10}%</p>
-
-      <h3>Overview</h3>
-      <p>{overview}</p>
-
-      <h3>Genres</h3>
-      <ul>
-        {genres.map(genre => (
-          <li key={genre.id}>{genre.name}</li>
-        ))}
-      </ul>
+      <div className={s.movieCardDesc}>
+        <h2 className={s.movieCardTitle}>
+          {title}({release_date.slice(0, 4)})
+        </h2>
+        <p>User score: {vote_average * 10}%</p>
+        <h3 className={s.movieCardTitle}>Overview</h3>
+        <p>{overview}</p>
+        <h3 className={s.movieCardTitle}>Genres</h3>
+        <ul className={s.movieGenres}>
+          {genres.map(({ id, name }) => (
+            <li key={id}>{name}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
