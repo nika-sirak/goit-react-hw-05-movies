@@ -1,10 +1,10 @@
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AppBar from 'components/AppBar/AppBar';
-import NotFoundPage from 'pages/NotFoundPage';
+import NotFoundPage from 'pages/NotFound/NotFoundPage';
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
-const MoviesPage = lazy(() => import('../../pages/MoviesPage'));
+const MoviesPage = lazy(() => import('../../pages/MoviesPage/MoviesPage'));
 const MovieDetailsPage = lazy(() =>
   import('../../pages/MovieDetailsPage/MovieDetailsPage')
 );

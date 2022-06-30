@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
+import { BASE_URL } from 'services/moviesAPI';
 import s from './MovieCard.module.css';
-
-const BASE_URL = 'https://image.tmdb.org/t/p/w300/';
 
 function MovieCard({ movie }) {
   const { poster_path, title, release_date, vote_average, overview, genres } =
@@ -33,5 +32,20 @@ function MovieCard({ movie }) {
     </div>
   );
 }
+
+MovieCard.propTypes = {
+  movie: PropTypes.shape({
+    poster_path: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    release_date: PropTypes.string,
+    vote_average: PropTypes.number.isRequired,
+    overview: PropTypes.string.isRequired,
+    genres: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+      })
+    ),
+  }),
+};
 
 export default MovieCard;

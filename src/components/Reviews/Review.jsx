@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchMovieRevies } from '../../services/moviesAPI';
+import { fetchMovieReviews } from '../../services/moviesAPI';
 import Loader from 'components/Loader/Loader';
 import s from './Reviews.module.css';
 
@@ -15,7 +15,7 @@ function Reviews() {
       setLoading(true);
 
       try {
-        const { results } = await fetchMovieRevies(movieId);
+        const { results } = await fetchMovieReviews(movieId);
         if (results.length) {
           setReviews(results);
         }
@@ -25,13 +25,15 @@ function Reviews() {
         setLoading(false);
       }
     };
+
     fetchReviews();
   }, [movieId]);
 
   return (
     <>
       {loading && <Loader />}
-      {!reviews && (
+      {error && <p className={s.error}>{error.message}</p>}
+      {!reviews && !error && (
         <p className={s.reviewError}>
           We don't have any reviews for this movie.
         </p>

@@ -1,0 +1,9 @@
+.moviePageSection {
+  margin-bottom: 50px;
+}
+.error {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  color: #0d253f;
+}

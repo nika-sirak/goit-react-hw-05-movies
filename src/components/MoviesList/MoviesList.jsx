@@ -1,7 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { BASE_URL } from 'services/moviesAPI';
 import defaultPoster from '../../images/defaultPoster.jpg';
 import s from './MoviesList.module.css';
-const BASE_URL = 'https://image.tmdb.org/t/p/w300/';
 
 function MoviesList({ moviesArr }) {
   const location = useLocation();
@@ -16,20 +17,11 @@ function MoviesList({ moviesArr }) {
               state={{ from: location }}
               className={s.movieListLink}
             >
-              {poster_path && (
-                <img
-                  src={`${BASE_URL}${poster_path}`}
-                  alt={title}
-                  className={s.movieListImg}
-                />
-              )}
-              {!poster_path && (
-                <img
-                  src={defaultPoster}
-                  alt={title}
-                  className={s.movieListImg}
-                />
-              )}
+              <img
+                src={poster_path ? `${BASE_URL}${poster_path}` : defaultPoster}
+                alt={title}
+                className={s.movieListImg}
+              />
               <h2 className={s.movieListTitle}>
                 {original_title ?? original_name}
               </h2>
@@ -40,5 +32,17 @@ function MoviesList({ moviesArr }) {
     </ul>
   );
 }
+
+MoviesList.propTypes = {
+  moviesArr: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      poster_path: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      original_title: PropTypes.string,
+      original_name: PropTypes.string,
+    })
+  ),
+};
 
 export default MoviesList;

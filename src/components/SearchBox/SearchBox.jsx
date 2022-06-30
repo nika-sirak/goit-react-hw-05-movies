@@ -14,7 +14,7 @@ function SearchBox({ onSubmit }) {
     e.preventDefault();
 
     if (movieName.trim() === '') {
-      return toast.warning('Please, add some words');
+      return toast.warning('Please, add some movie');
     }
 
     onSubmit(movieName);

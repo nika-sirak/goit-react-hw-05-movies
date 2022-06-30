@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { fetchSearchMovieByQuery } from '../services/moviesAPI';
+import { fetchSearchMovieByQuery } from '../../services/moviesAPI';
 import SearchBox from 'components/SearchBox/SearchBox';
 import MoviesList from 'components/MoviesList/MoviesList';
 import Loader from 'components/Loader/Loader';
+import s from './MoviesPage.module.css';
 
 function MoviesPage() {
   const [movies, setMovies] = useState([]);
@@ -20,8 +21,10 @@ function MoviesPage() {
     if (query === null) {
       return;
     }
+
     const fetchMoviesByQuery = async () => {
       setLoading(true);
+
       try {
         const { results } = await fetchSearchMovieByQuery(query);
         setMovies(results);
@@ -31,15 +34,17 @@ function MoviesPage() {
         setLoading(false);
       }
     };
+
     fetchMoviesByQuery();
   }, [query]);
 
   return (
-    <>
+    <section className={s.moviePageSection}>
       <SearchBox onSubmit={handleSearchBox} />
       {loading && <Loader />}
       {movies && <MoviesList moviesArr={movies} />}
-    </>
+      {error && <p className={s.error}>{error.message}</p>}
+    </section>
   );
 }
 
