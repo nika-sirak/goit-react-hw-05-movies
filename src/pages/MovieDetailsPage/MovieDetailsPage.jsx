@@ -7,7 +7,6 @@ import {
 } from 'react-router-dom';
 import { useState, useEffect, Suspense } from 'react';
 import { AiFillCaretLeft } from 'react-icons/ai';
-import { toast } from 'react-toastify';
 import { fetchMovieById } from '../../services/moviesAPI';
 import Loader from 'components/Loader/Loader';
 import MovieCard from 'components/MovieCard/MovieCard';
