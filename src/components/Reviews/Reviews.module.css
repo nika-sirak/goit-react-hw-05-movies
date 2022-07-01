@@ -1,19 +1,8 @@
-.reviewsList {
-  padding-left: 30px;
-  padding-right: 30px;
-}
-.reviewsItem {
-  padding-bottom: 10px;
-  border-bottom: 1px solid #90cea1;
-}
 .reviewError {
   padding-left: 30px;
   color: #fff;
 }
-.author,
-.review {
-  color: #fff;
-}
+
 .error {
   padding-left: 30px;
   color: #fff;

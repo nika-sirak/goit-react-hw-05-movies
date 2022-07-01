@@ -1,0 +1,12 @@
+.reviewsList {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.reviewsItem {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #90cea1;
+}
+.author,
+.review {
+  color: #fff;
+}

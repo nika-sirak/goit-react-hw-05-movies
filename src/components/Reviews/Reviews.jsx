@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieReviews } from '../../services/moviesAPI';
 import Loader from 'components/Loader/Loader';
+import ReviewsList from './ReviewsList/ReviewsList';
 import s from './Reviews.module.css';
 
 function Reviews() {
@@ -38,16 +39,7 @@ function Reviews() {
           We don't have any reviews for this movie.
         </p>
       )}
-      {reviews && (
-        <ul className={s.reviewsList}>
-          {reviews.map(({ id, author, content }) => (
-            <li key={id} className={s.reviewsItem}>
-              <p className={s.author}>Author: {author}</p>
-              <p className={s.review}>{content}</p>
-            </li>
-          ))}
-        </ul>
-      )}
+      {reviews && <ReviewsList reviewsArr={reviews} />}
     </>
   );
 }

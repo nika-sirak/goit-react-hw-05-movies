@@ -1,22 +1,3 @@
-.castList {
-  padding-left: 30px;
-}
-
-.castItem {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-}
-.castItem:not(:last-child) {
-  margin-bottom: 15px;
-}
-.castImg {
-  height: 180px;
-  object-fit: cover;
-}
-.castDesc {
-  color: #fff;
-}
 .error {
   padding-left: 30px;
   color: #fff;
