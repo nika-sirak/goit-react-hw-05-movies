@@ -29,9 +29,6 @@ function MovieDetailsPage() {
         setMovie(result);
       } catch (error) {
         setError(error);
-        toast.error('Movie not found', {
-          position: toast.POSITION.TOP_RIGHT,
-        });
       } finally {
         setLoading(false);
       }
@@ -46,40 +43,43 @@ function MovieDetailsPage() {
         Back to movies
       </Link>
       {loading && <Loader />}
+      {error && <p>{error.message}</p>}
       {movie && <MovieCard movie={movie} />}
 
-      <div className={s.movieEdition}>
-        <h3 className={s.movieEditionTitle}>Additional information</h3>
-        <ul className={s.movieEditionList}>
-          <li>
-            {movie && (
-              <NavLink
-                to="cast"
-                className={navData =>
-                  navData.isActive ? s.activeLink : s.movieEditionLink
-                }
-              >
-                Cast
-              </NavLink>
-            )}
-          </li>
-          <li>
-            {movie && (
-              <NavLink
-                to="reviews"
-                className={navData =>
-                  navData.isActive ? s.activeLink : s.movieEditionLink
-                }
-              >
-                Reviews
-              </NavLink>
-            )}
-          </li>
-        </ul>
-        <Suspense fallback={<Loader />}>
-          <Outlet movieeId={movieId} />
-        </Suspense>
-      </div>
+      {!error && (
+        <div className={s.movieEdition}>
+          <h3 className={s.movieEditionTitle}>Additional information</h3>
+          <ul className={s.movieEditionList}>
+            <li>
+              {movie && (
+                <NavLink
+                  to="cast"
+                  className={navData =>
+                    navData.isActive ? s.activeLink : s.movieEditionLink
+                  }
+                >
+                  Cast
+                </NavLink>
+              )}
+            </li>
+            <li>
+              {movie && (
+                <NavLink
+                  to="reviews"
+                  className={navData =>
+                    navData.isActive ? s.activeLink : s.movieEditionLink
+                  }
+                >
+                  Reviews
+                </NavLink>
+              )}
+            </li>
+          </ul>
+          <Suspense fallback={<Loader />}>
+            <Outlet movieeId={movieId} />
+          </Suspense>
+        </div>
+      )}
     </section>
   );
 }
