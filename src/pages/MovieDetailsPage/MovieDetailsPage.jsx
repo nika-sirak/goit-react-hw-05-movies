@@ -53,6 +53,7 @@ function MovieDetailsPage() {
               {movie && (
                 <NavLink
                   to="cast"
+                  state={{ from: location?.state?.from }}
                   className={navData =>
                     navData.isActive ? s.activeLink : s.movieEditionLink
                   }
@@ -65,6 +66,7 @@ function MovieDetailsPage() {
               {movie && (
                 <NavLink
                   to="reviews"
+                  state={{ from: location?.state?.from }}
                   className={navData =>
                     navData.isActive ? s.activeLink : s.movieEditionLink
                   }
